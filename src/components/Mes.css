@@ -1,0 +1,15 @@
+.mes{
+    margin: 0 10px ;
+}
+h2{
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+}
+.dias-container{
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    grid-template-rows: repeat(4, 50px);
+    gap: 5px;
+    justify-items: center;
+}
