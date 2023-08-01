@@ -1,10 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,500&family=Lora:wght@600&display=swap');
+
 .mes{
     margin: 0 10px ;
 }
 h2{
-    text-align: left;
-    font-size: 18px;
+    text-align: center;
+    font-size: 35px;
     font-weight: bold;
+    font-family: Calibri;
+}
+h3{
+    font-family: Lora;
 }
 .dias-container{
     display: grid;

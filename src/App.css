@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,500&display=swap');
+
 .app{
     display: flex;
     flex-direction: column;
     text-align: center;
+}
+h1{
+    font-family: Kanit;
 }
