@@ -1,7 +1,7 @@
 import './Dia.css'
-const Dias = ({value})=>{
+const Dias = ({value, onClick})=>{
     return (
-    <div className="dias">
+    <div className="dias" onClick={()=>onClick(value)}>
         <div className='dia-numero'>{value}</div>
     </div>
     )

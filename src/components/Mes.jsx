@@ -1,9 +1,28 @@
 import './Mes.css'
 import Dias from "./Dia.jsx"
+import HorariosModal from './Activities/HorariosModal.jsx';
+import {useState} from 'react';
 
 const Meses = ({monthName})=>{
     const num = Array.from({length:31},(_,index)=>index+1);
     const week = ['D', 'L', 'M', 'Mi', 'J', 'V', 'S'];
+
+    const [modalOpen,setModalOpen] = useState(false);
+    const [selectedDay, setSelectedDay] = useState(null);
+    const [reservas, setReservas] = useState([])
+
+    const handleDayClick = (day)=>{
+        setSelectedDay(day);
+        setModalOpen(true)
+    }
+
+    const handleModalClose = ()=>{
+        setModalOpen(false)
+    }
+
+    const handleSaveReserva =(reserva)=>{
+        setReservas([...reservas,reserva])
+    }
 
     return(
         <>
@@ -14,10 +33,18 @@ const Meses = ({monthName})=>{
                         <h3 key={week}>{week}</h3>
                     ))}
                     {num.map((num,index)=>(
-                        <Dias key={`num-${index}`} value={num}/>
+                        <Dias key={`num-${index}`} value={num} onClick={handleDayClick}/>
                     ))}
                 </div>
             </div>
+            {modalOpen &&(
+                <HorariosModal
+                day={selectedDay}
+                reservas={reservas}
+                onClose={handleModalClose}
+                onSave={handleSaveReserva}
+                />
+            )}
         </>
     )
 }
