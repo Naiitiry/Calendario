@@ -27,8 +27,8 @@ const HorariosModal = ({day, reservas, onClose, onSave})=>{
 
     return(
         <>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+            <Modal show={show} onHide={handleClose} backdrop="static">
+                <Modal.Header>
                     <Modal.Title>Horarios para el día {day}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -37,7 +37,7 @@ const HorariosModal = ({day, reservas, onClose, onSave})=>{
                                 <p key={index}>{`${reserva.horario}: ${reserva.descripcion}`}</p>
                             ))
                         }
-                    <label htmlFor="horario">Seleccione un horario:</label>
+                    <label htmlFor="horario">Seleccione un horario: </label>
                     <select id="horario" value={selectedHorario} onChange={handleHorarioChange}>
                         {
                             Array.from({length:24}, (_,i)=>i).map((hour)=>(
@@ -47,6 +47,8 @@ const HorariosModal = ({day, reservas, onClose, onSave})=>{
                             ))
                         }
                     </select>
+                    </Modal.Body>
+                    <Modal.Body>
                     <input id="descripcion" type="text" onChange={handleDescripcion} placeholder="descripcion"/>
                     </Modal.Body>
                     <Modal.Footer>

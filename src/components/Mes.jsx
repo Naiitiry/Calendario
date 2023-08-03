@@ -1,7 +1,7 @@
 import './Mes.css'
 import Dias from "./Dia.jsx"
 import HorariosModal from './Activities/HorariosModal.jsx';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 const Meses = ({monthName})=>{
     const num = Array.from({length:31},(_,index)=>index+1);
