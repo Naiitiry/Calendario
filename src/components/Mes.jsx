@@ -40,7 +40,7 @@ const Meses = ({monthName})=>{
             {modalOpen &&(
                 <HorariosModal
                 day={selectedDay}
-                reservas={reservas}
+                reservas={reservas.filter((reserva) => reserva.day === selectedDay)}
                 onClose={handleModalClose}
                 onSave={handleSaveReserva}
                 />

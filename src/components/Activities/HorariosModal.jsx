@@ -1,33 +1,42 @@
 import {useState} from "react"
-import './HorariosModal.css'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 
 const HorariosModal = ({day, reservas, onClose, onSave})=>{
     
     const [selectedHorario,setSelectedHorario] = useState("00:00");
+    const [show,setShow] = useState(true)
+    const [descripcion,setDescripcion] = useState('')
 
     const handleHorarioChange = (e) =>{
         setSelectedHorario(e.target.value)
     }
+    const handleDescripcion = (e) =>{
+        setDescripcion(e.target.value)
+    }
+    const handleClose = () => setShow(false);
 
     const handleSave = () => {
         onSave({
             day: day,
-            horario: selectedHorario
+            horario: selectedHorario,
+            descripcion: descripcion
         })
     }
 
     return(
         <>
-            <div className="modal">
-                <div className="modal-content">
-                    <h2>Horarios para el día {day}</h2>
-                    <div>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Horarios para el día {day}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                         {
                             reservas.map((reserva, index)=>(
                                 <p key={index}>{`${reserva.horario}: ${reserva.descripcion}`}</p>
                             ))
                         }
-                    </div>
                     <label htmlFor="horario">Seleccione un horario:</label>
                     <select id="horario" value={selectedHorario} onChange={handleHorarioChange}>
                         {
@@ -38,10 +47,13 @@ const HorariosModal = ({day, reservas, onClose, onSave})=>{
                             ))
                         }
                     </select>
-                    <button onClick={handleSave}>Guardar</button>
-                    <button onClick={onClose}>Cerrar</button>
-                </div>
-            </div>
+                    <input id="descripcion" type="text" onChange={handleDescripcion} placeholder="descripcion"/>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={handleSave}>Guardar</Button>
+                        <Button variant="danger" onClick={onClose}>Cerrar</Button>
+                    </Modal.Footer>
+            </Modal>
         </>
     )
 }
